@@ -1,0 +1,87 @@
+﻿@model DMS.Data.User
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    input[type=text], input[type=password], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+</style>
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item">User </li>
+                    <li class="breadcrumb-item active">Create </li>
+
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            @if (!string.IsNullOrEmpty(ViewBag.success))
+    {
+        <div class="alert alert-success" role="alert">
+            <strong>Success!</strong> @ViewBag.success.
+        </div>}
+            @if (!string.IsNullOrEmpty(ViewBag.error))
+    {
+        <div class="alert alert-warning" role="alert">
+            <strong>Failed!</strong> @ViewBag.error.
+        </div>}
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col">
+                    <input asp-for="UserEmail" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="UserEmail" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <input asp-for="UserName" class="form-control" placeholder="Name" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <input type="password" asp-for="password" class="form-control" placeholder="Password: admin/ user" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <select name="UserRole">
+                        <option value="User">User</option>
+                        <option value="Admin">Admin</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-info btn-lg" style="float:right;" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+

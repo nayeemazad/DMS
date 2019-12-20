@@ -1,0 +1,90 @@
+﻿@model DMS.Data.Document
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    input[type=text],select, textarea, password {
+        width: 100%;
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+    input[type=file] {
+        width: 100%;
+        padding: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+</style>
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item">Document </li>
+                    <li class="breadcrumb-item active">upload </li>
+
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post"
+              enctype="multipart/form-data">
+            @if (!string.IsNullOrEmpty(ViewBag.success))
+    {
+        <div class="alert alert-success" role="alert">
+            <strong>Success!</strong> @ViewBag.success.
+        </div>}
+            @if (!string.IsNullOrEmpty(ViewBag.error))
+    {
+        <div class="alert alert-warning" role="alert">
+            <strong>Failed!</strong> @ViewBag.error.
+        </div>}
+
+            <div class="row">
+                <div class="col-md-6">
+                    Choose a Document:<input type="file" name="file" required/>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                   Select Category: <select name="CategoryId">
+
+
+                        @foreach (var i in ViewBag.categories)
+                {
+
+                    <option value="@i.CategoryId">@i.CategoryName</option>
+        }
+
+                    </select>
+                </div>
+            </div>
+            <br>
+            <div class="row col-md-6">
+                <button type="submit" class="btn btn-info">Upload</button>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div>
+  
+</div>
+

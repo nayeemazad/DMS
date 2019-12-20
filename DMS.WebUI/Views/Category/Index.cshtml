@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DMS.Data.Category>
+
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Category</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item">Category </li>
+
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+    <strong>@TempData["success"]</strong>
+
+    <strong style="color:red;">@TempData["error"]</strong>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td>@i.CategoryId</td>
+                    <td>@i.CategoryName</td>
+                    <td>
+                       
+                        <a href="/Category/Delete/@i.CategoryId" class="btn btn-danger">delete</a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

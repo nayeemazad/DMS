@@ -1,0 +1,79 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>DMS | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/images/logo.png" type="image/gif" sizes="16x16">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/adminlte/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/adminlte/plugins/iCheck/square/blue.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+
+        <div style="text-align:center;display:none" id="loaderDiv">
+            <img src="~/adminlte/Content/loading.gif" width="150" />
+        </div>
+        <div class="login-logo">
+          
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <br>
+            <div class="card-body login-card-body">
+                <p class="login-box-msg"> <img src="~/images/logo.png" style="height:30px;width:30px;" />Document Management System</p>
+                <p class="login-box-msg" style="color:red;">@TempData["error"]</p>
+
+                <form action="/Auth/Login" method="post">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" name="UserEmail" placeholder=" Email">
+
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" name="password" placeholder="Password">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input type="checkbox"> Remember Me
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+
+               
+                <br>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+   
+    <!-- Bootstrap 4 -->
+    <script src="~/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- iCheck -->
+
+</body>
+</html>
