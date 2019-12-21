@@ -75,14 +75,32 @@ namespace DMS.Controllers
         /*
          * DOWNLOAD DOCUMENT
          */
-        public async Task<FileResult> Download(int id)
+        public async Task<ActionResult> DownloadAsync(int id)
         {
-            string filePath = _documentService.GetPath(id);
-            string fileName = _documentService.GetName(id);
+            int documentId = (int) id;
+            int userId = (int) HttpContext.Session.GetInt32("UserId");
+            var status = _documentService.DocumentPermissionRule(userId, documentId);
+            if (status) {
+                string filePath = _documentService.GetPath(userId, documentId);
+                string fileName = _documentService.GetName(userId, documentId);
+                return await this.ReturnDocumentFileAsync(filePath, fileName);
+            } else
+            {
+                TempData["Error"] = "Docuement permission failed";
+            }
+            return RedirectToAction("Index");
+        }
+
+        /*
+         * RETURN FILE
+         */
+
+        public async Task<FileResult> ReturnDocumentFileAsync(string filePath, string fileName)
+        {
             var path = Path.Combine(
-                        Directory.GetCurrentDirectory(),
-                        "wwwroot\\Documents\\", fileName
-                       );
+                            Directory.GetCurrentDirectory(),
+                            "wwwroot\\Documents\\", fileName
+                           );
 
             var memory = new MemoryStream();
             using (var stream = new FileStream(path, FileMode.Open))
@@ -91,6 +109,7 @@ namespace DMS.Controllers
             }
             memory.Position = 0;
             return File(memory, GetContentType(path), Path.GetFileName(path));
+
         }
 
         /*
