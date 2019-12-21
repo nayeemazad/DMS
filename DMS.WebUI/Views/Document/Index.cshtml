@@ -23,10 +23,17 @@
 <form action="/Document/Index" method="get">
     <div class="form-actions no-color">
         <p><input type="text" class="form-group" name="str" placeholder="Search Documents.." />
-            <input type="submit" value="Search" class="btn btn-default btn-sm" /> 
+            <input type="submit" value="Search" class="btn btn-default btn-sm" />
         </p>
     </div>
 </form>
+
+@if (TempData["error"] != null)
+{
+    <div class="alert alert-warning" role="alert">
+        <strong>Failed!</strong> @TempData["error"].
+    </div>
+}
 <table class="table">
     <thead>
         <tr>
@@ -58,8 +65,7 @@
                     @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
                 <td>
-                    <a href="/Document/Download/@item.DocumentId" class="btn btn-info">Download</a>
-
+                    <a href="/Document/DownloadAsync/@item.DocumentId" class="btn btn-info">Download</a>
                 </td>
             </tr>
         }
