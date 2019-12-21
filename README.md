@@ -32,5 +32,26 @@ Step 2: Set gmail credential for sending mail at DMS.WebUI/appsettings.json file
 <br>
 Step 3: Set ConnectionStrings for Database connection <br>
 <pre>"ConnectionStrings": {
-    "DmsDb": "Server={value};Database={value};Initial Catalog= {value};Integrated Security=True;User Id={value};Password={value};"
-  }</pre>
+    "DmsDb": "Server=your_server_name;Initial Catalog=your_database_name;Integrated Security=True;User Id=user_id;Password=password;"
+  }</pre> <br>
+
+Step 4: Go to Package manager console and then run command <pre> PM> Update-Database</pre> . This will create database as specified in the ConnectionStrings and will execute the migration files.<br>
+
+Step 5: Now insert an entry for admin at user table from database sql interface
+<pre>
+USE [DMS]
+GO
+
+INSERT INTO [dbo].[Users]
+           ([UserEmail]
+           ,[UserName]
+           ,[password]
+           ,[UserRole])
+     	VALUES
+           ('admin@admin.com',
+            'Admin',
+            'admin',
+            'Admin')
+GO
+</pre><br>
+Final Step: Run your project and it will navigate to browser http://localhost:{port} 
