@@ -129,18 +129,18 @@ namespace DMS.Service
         /* 
          * GET DOCUMENT PATH
          */
-        public string GetPath(int id)
+        public string GetPath(int userId, int documentId)
         {
-            var item = _context.Documents.Where(x => x.DocumentId == id).FirstOrDefault();
+            var item = _context.Documents.Where(x => x.DocumentId == documentId && x.Users.UserId == userId).FirstOrDefault();
             return item.DocumentPath;
         }
 
         /* 
          * GET DOCUMENT NAME
          */
-        public string GetName(int id)
+        public string GetName(int userId, int documentId)
         {
-            var item = _context.Documents.Where(x => x.DocumentId == id).FirstOrDefault();
+            var item = _context.Documents.Where(x => x.DocumentId == documentId && x.Users.UserId == userId).FirstOrDefault();
             return item.DocumentName;
         }
 
@@ -183,6 +183,20 @@ namespace DMS.Service
                 };
             }
             
+            return response;
+        }
+
+        /*
+         * DOCUMENT PERMISSION RULE
+         */
+        public bool DocumentPermissionRule(int userId, int documentId)
+        {
+            var response = false;
+            var itemCount = _context.Documents.Where(x => x.DocumentId == documentId && x.Users.UserId == userId).Count();
+            if (itemCount == 1)
+            {
+                response = true;
+            }
             return response;
         }
     }

@@ -51,6 +51,7 @@ namespace DMS.Controllers
                 identity.AddClaim(new Claim(ClaimTypes.Role, _user[0].UserRole));
                 identity.AddClaim(new Claim(ClaimTypes.Email, _user[0].UserEmail));               
                 HttpContext.Session.SetString("UserEmail", _user[0].UserEmail);
+                HttpContext.Session.SetInt32("UserId", _user[0].UserId);
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
 
                 if (_user[0].UserRole == "Admin")
